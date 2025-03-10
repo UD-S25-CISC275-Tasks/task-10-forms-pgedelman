@@ -8,19 +8,9 @@ import { Question, QuestionType } from "./interfaces/question";
 export function makeBlankQuestion(
     id: number,
     name: string,
-    type: QuestionType,
+    type: QuestionType
 ): Question {
-    const blankQuestion: Question = {
-        id: id,
-        name: name,
-        body: "",
-        type: type,
-        options: [],
-        expected: "",
-        points: 1,
-        published: false
-    };
-    return blankQuestion;
+    return {};
 }
 
 /**
@@ -31,9 +21,7 @@ export function makeBlankQuestion(
  * HINT: Look up the `trim` and `toLowerCase` functions.
  */
 export function isCorrect(question: Question, answer: string): boolean {
-    const expectedAnswer: string = question.expected.trim().toLowerCase();
-    const normalizedAnswer: string = answer.trim().toLowerCase();
-    return expectedAnswer === normalizedAnswer;
+    return false;
 }
 
 /**
@@ -43,11 +31,7 @@ export function isCorrect(question: Question, answer: string): boolean {
  * be exactly one of the options.
  */
 export function isValid(question: Question, answer: string): boolean {
-    const questionType: QuestionType = question.type;
-
-    return questionType === "short_answer_question"
-        ? true
-        : question.options.includes(answer);
+    return false;
 }
 
 /**
@@ -57,7 +41,7 @@ export function isValid(question: Question, answer: string): boolean {
  * name "My First Question" would become "9: My First Q".
  */
 export function toShortForm(question: Question): string {
-    return `${question.id}: ${question.name.slice(0, 10)}`;
+    return "";
 }
 
 /**
@@ -78,15 +62,7 @@ export function toShortForm(question: Question): string {
  * Check the unit tests for more examples of what this looks like!
  */
 export function toMarkdown(question: Question): string {
-    const baseMarkdown: string = `# ${question.name}\n${question.body}`;
-
-    return question.type === "short_answer_question"
-        ? baseMarkdown
-        : `${baseMarkdown}\n- ${question.options.reduce(
-              (accumulator: string, currentValue: string) => {
-                  return `${accumulator}\n- ${currentValue}`;
-              }
-          )}`;
+    return "";
 }
 
 /**
@@ -94,12 +70,7 @@ export function toMarkdown(question: Question): string {
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
-    const newQuestion: Question = {
-        ...question,
-        options: [...question.options],
-        name: newName
-    };
-    return newQuestion;
+    return question;
 }
 
 /**
@@ -108,12 +79,7 @@ export function renameQuestion(question: Question, newName: string): Question {
  * published; if it was published, now it should be not published.
  */
 export function publishQuestion(question: Question): Question {
-    const newQuestion: Question = {
-        ...question,
-        options: [...question.options],
-        published: !question.published
-    };
-    return newQuestion;
+    return question;
 }
 
 /**
@@ -123,14 +89,7 @@ export function publishQuestion(question: Question): Question {
  * The `published` field should be reset to false.
  */
 export function duplicateQuestion(id: number, oldQuestion: Question): Question {
-    const newQuestion: Question = {
-        ...oldQuestion,
-        options: [...oldQuestion.options],
-        id: id,
-        published: false,
-        name: `Copy of ${oldQuestion.name}`
-    };
-    return newQuestion;
+    return oldQuestion;
 }
 
 /**
@@ -141,11 +100,7 @@ export function duplicateQuestion(id: number, oldQuestion: Question): Question {
  * Check out the subsection about "Nested Fields" for more information.
  */
 export function addOption(question: Question, newOption: string): Question {
-    const newQuestion: Question = {
-        ...question,
-        options: [...question.options, newOption]
-    };
-    return newQuestion;
+    return question;
 }
 
 /**
@@ -160,15 +115,7 @@ export function mergeQuestion(
     id: number,
     name: string,
     contentQuestion: Question,
-    { points }: { points: number },
+    { points }: { points: number }
 ): Question {
-    const newQuestion: Question = {
-        ...contentQuestion,
-        options: [...contentQuestion.options],
-        id: id,
-        name: name,
-        published: false,
-        points: points
-    };
-    return newQuestion;
+    return contentQuestion;
 }
