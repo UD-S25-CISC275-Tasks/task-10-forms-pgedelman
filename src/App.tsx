@@ -15,6 +15,8 @@ import { ChooseTeam } from "./bad-components/ChooseTeam";*/
 import { CheckAnswer } from "./form-components/CheckAnswer";
 import { GiveAttempts } from "./form-components/GiveAttempts";
 import { EditMode } from "./form-components/EditMode";
+import { ChangeColor } from "./form-components/ChangeColor";
+import { MultipleChoiceQuestion } from "./form-components/MultipleChoiceQuestion";
 
 function App(): React.JSX.Element {
     return (
@@ -47,6 +49,13 @@ function App(): React.JSX.Element {
             <GiveAttempts></GiveAttempts>
             <hr></hr>
             <EditMode></EditMode>
+            <hr></hr>
+            <ChangeColor></ChangeColor>
+            <hr></hr>
+            <MultipleChoiceQuestion
+                options={["Option 1", "Option 2", "Option 3"]}
+                expectedAnswer="Option 2"
+            ></MultipleChoiceQuestion>
         </div>
     );
 }
